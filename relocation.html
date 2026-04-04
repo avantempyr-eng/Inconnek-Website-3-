@@ -320,24 +320,30 @@ document.querySelectorAll("a").forEach(link => {
     });
 });
 
-document.getElementById("relocation_form").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const form = this;
+function submitForm() {
+    const form = document.getElementById("relocation_form");
     const formData = new FormData(form);
 
+    // SHOW SUCCESS IMMEDIATELY
+    document.querySelector(".chat-container").innerHTML = `
+        <div style="text-align:center;">
+            <h2>✅ Request Submitted!</h2>
+            <p>We’ll contact you shortly.</p>
+            <button onclick="goHome()" class="btn">⬅ Back to Home</button>
+        </div>
+    `;
+
+    // SEND DATA TO APPS SCRIPT
     fetch("https://script.google.com/macros/s/AKfycbz6RjlmPFwaCM3TmxyolqJdLL7jLca8WZ_j_JIMZucpL0jQRqecBqo5FbFAJ0UgXyx8Nw/exec", {
         method: "POST",
-        body: formData
-    })
-    .then(() => {
-        alert("✅ Request submitted successfully!");
-        form.reset();
-    })
-    .catch(() => {
-        alert("❌ Submission failed.");
+        body: formData,
+        mode: "no-cors"
     });
-});
+}
+
+function goHome(){
+    window.location.href = "Inconnek.html";
+}
 </script>
 
 </body>
