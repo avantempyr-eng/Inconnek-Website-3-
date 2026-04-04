@@ -320,8 +320,10 @@ document.querySelectorAll("a").forEach(link => {
     });
 });
 
-function submitForm() {
-    const form = document.getElementById("relocation_form");
+document.getElementById("relocation_form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const form = this;
     const formData = new FormData(form);
 
     fetch("https://script.google.com/macros/s/AKfycbz6RjlmPFwaCM3TmxyolqJdLL7jLca8WZ_j_JIMZucpL0jQRqecBqo5FbFAJ0UgXyx8Nw/exec", {
@@ -332,8 +334,10 @@ function submitForm() {
         alert("✅ Request submitted successfully!");
         form.reset();
     })
-}
-
+    .catch(() => {
+        alert("❌ Submission failed.");
+    });
+});
 </script>
 
 </body>
