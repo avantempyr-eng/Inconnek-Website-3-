@@ -324,18 +324,24 @@ function submitForm() {
     const form = document.getElementById("relocationForm");
     const formData = new FormData(form);
 
+    // INSTANT SUCCESS UI
     document.querySelector(".chat-container").innerHTML = `
-        <h2>✅ Submitted!</h2>
-        <p>We’ll contact you shortly.</p>
+        <div style="text-align:center;">
+            <h2>✅ Request Submitted!</h2>
+            <p>We’ll contact you shortly.</p>
+            <button onclick="goHome()" class="btn">⬅ Back to Home</button>
+        </div>
     `;
 
-    fetch("https://script.google.com/macros/s/AKfycbz6RjlmPFwaCM3TmxyolqJdLL7jLca8WZ_j_JIMZucpL0jQRqecBqo5FbFAJ0UgXyx8Nw/exec", {
+    // SEND DATA IN BACKGROUND
+    fetch("https://script.google.com/macros/s/AKfycbxOsSizJftoKmhyZQKu12w3XxF_3DB8PwcLgxG10H_nHftsXrr0Yity_Kkt40kgILHLmQ/exec", {
         method: "POST",
         body: formData,
         mode: "no-cors"
     });
 }
 
+// BACK BUTTON FUNCTION
 function goHome(){
     window.location.href = "Inconnek.html";
 }
