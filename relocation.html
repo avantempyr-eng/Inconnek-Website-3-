@@ -257,7 +257,7 @@ body.fade-out{
         <span>Fill in the details below and we’ll assist you.</span>
     </div>
 
-    <form id="relocation_form">
+    <form id="relocation_form" onsubmit="return false;">
 	
 
         <div class="chat-group">
@@ -287,7 +287,7 @@ body.fade-out{
 
         <input type="hidden" name="form_type" value="transfer">
 
-        <button type="submit" class="btn">
+        <button type="button" class="btn" onclick="submitForm()">
             Submit Request
         </button>
 
@@ -320,10 +320,8 @@ document.querySelectorAll("a").forEach(link => {
     });
 });
 
-document.getElementById("relocation_form").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const form = this;
+function submitForm() {
+    const form = document.getElementById("relocation_form");
     const formData = new FormData(form);
 
     fetch("https://script.google.com/macros/s/AKfycbxOsSizJftoKmhyZQKu12w3XxF_3DB8PwcLgxG10H_nHftsXrr0Yity_Kkt40kgILHLmQ/exec", {
@@ -337,7 +335,7 @@ document.getElementById("relocation_form").addEventListener("submit", function(e
     .catch(() => {
         alert("❌ Submission failed.");
     });
-});
+}
 
 </script>
 
