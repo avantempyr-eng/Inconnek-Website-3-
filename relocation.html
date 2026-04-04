@@ -324,20 +324,14 @@ function submitForm() {
     const form = document.getElementById("relocation_form");
     const formData = new FormData(form);
 
-    document.querySelector(".chat-container").innerHTML = `
-        <h2>✅ Submitted!</h2>
-        <p>We’ll contact you shortly.</p>
-    `;
-
     fetch("https://script.google.com/macros/s/AKfycbz6RjlmPFwaCM3TmxyolqJdLL7jLca8WZ_j_JIMZucpL0jQRqecBqo5FbFAJ0UgXyx8Nw/exec", {
         method: "POST",
-        body: formData,
-        mode: "no-cors"
-    });
-}
-
-function submitForm() {
-    alert("JS is working");
+        body: formData
+    })
+    .then(() => {
+        alert("✅ Request submitted successfully!");
+        form.reset();
+    })
 }
 
 </script>
