@@ -257,7 +257,7 @@ body.fade-out{
         <span>Fill in the details below and we’ll assist you.</span>
     </div>
 
-    <form action="https://script.google.com/macros/s/AKfycbxOsSizJftoKmhyZQKu12w3XxF_3DB8PwcLgxG10H_nHftsXrr0Yity_Kkt40kgILHLmQ/exec" method="POST">
+    <form id="relocation_form">
 	
 
         <div class="chat-group">
@@ -319,6 +319,26 @@ document.querySelectorAll("a").forEach(link => {
         }, 400);
     });
 });
+
+document.getElementById("relocation_form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const form = this;
+    const formData = new FormData(form);
+
+    fetch("https://script.google.com/macros/s/AKfycbxOsSizJftoKmhyZQKu12w3XxF_3DB8PwcLgxG10H_nHftsXrr0Yity_Kkt40kgILHLmQ/exec", {
+        method: "POST",
+        body: formData
+    })
+    .then(() => {
+        alert("✅ Request submitted successfully!");
+        form.reset();
+    })
+    .catch(() => {
+        alert("❌ Submission failed.");
+    });
+});
+
 </script>
 
 </body>
