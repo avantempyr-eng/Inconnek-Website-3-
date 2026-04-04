@@ -324,7 +324,7 @@ function submitForm() {
     const form = document.getElementById("relocation_form");
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbz9-ZDwuWdEDDy3MO_f6lw0DHX80GxB1DSYqfP8t1FBhh2ACnypC56K85EFaD5ViaFa/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbz-64UvV6QpTJoy-osy0Yh6d85o66jEFAFppllHc5YYAqIun93JVslwph1uzSYe5BAXtg/exec", {
         method: "POST",
         body: formData
     })
@@ -332,9 +332,6 @@ function submitForm() {
         alert("✅ Request submitted successfully!");
         form.reset();
     })
-    .catch(() => {
-        alert("❌ Submission failed.");
-    });
 }
 
 </script>
