@@ -321,17 +321,29 @@ document.querySelectorAll("a").forEach(link => {
 });
 
 function submitForm() {
-    const form = document.getElementById("relocation_form");
+    const form = document.getElementById("relocationForm");
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbz-64UvV6QpTJoy-osy0Yh6d85o66jEFAFppllHc5YYAqIun93JVslwph1uzSYe5BAXtg/exec", {
+    // INSTANT SUCCESS UI
+    document.querySelector(".chat-container").innerHTML = `
+        <div style="text-align:center;">
+            <h2>✅ Request Submitted!</h2>
+            <p>We’ll contact you shortly.</p>
+            <button onclick="goHome()" class="btn">⬅ Back to Home</button>
+        </div>
+    `;
+
+    // SEND DATA IN BACKGROUND
+    fetch("https://script.google.com/macros/s/AKfycbxOsSizJftoKmhyZQKu12w3XxF_3DB8PwcLgxG10H_nHftsXrr0Yity_Kkt40kgILHLmQ/exec", {
         method: "POST",
-        body: formData
-    })
-    .then(() => {
-        alert("✅ Request submitted successfully!");
-        form.reset();
-    })
+        body: formData,
+        mode: "no-cors"
+    });
+}
+
+// BACK BUTTON FUNCTION
+function goHome(){
+    window.location.href = "Inconnek.html";
 }
 
 </script>
