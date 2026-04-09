@@ -230,9 +230,8 @@ body.fade-out{
         <span>Fill in the details below and we’ll assist you.</span>
     </div>
 
-    <form action="https://script.google.com/macros/s/AKfycbxOsSizJftoKmhyZQKu12w3XxF_3DB8PwcLgxG10H_nHftsXrr0Yity_Kkt40kgILHLmQ/exec" method="POST">
+    <form id="repair_form" onsubmit="return false;">
 	
-
         <div class="chat-group">
             <label>Full Name</label>
             <input type="text" name="full_name" placeholder="Enter your full name" required>
@@ -260,7 +259,7 @@ body.fade-out{
 		
         <input type="hidden" name="form_type" value="issue">
 
-        <button type="submit" class="btn">
+        <button type="button" class="btn" onclick="submitForm()">
             Submit Request
         </button>
 
@@ -292,6 +291,32 @@ document.querySelectorAll("a").forEach(link => {
         }, 400);
     });
 });
+
+function submitForm() {
+    const form = document.getElementById("repair_form");
+    const formData = new FormData(form);
+
+    // SHOW SUCCESS IMMEDIATELY
+    document.querySelector(".chat-container").innerHTML = `
+        <div style="text-align:center;">
+            <h2>✅ Request Submitted!</h2>
+            <p>We’ll contact you shortly.</p>
+            <button onclick="resetForm()" class="btn">🔁 Submit Another Request</button>
+        </div>
+    `;
+
+    // SEND DATA TO APPS SCRIPT
+    fetch("https://script.google.com/macros/s/AKfycbzUg3_19iuB0cpI-WQ9IP8Py1-ayP7gDezV4VVm3yE3i4aALow5acYUy9LusmVIGqinlw/exec", {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+    });
+}
+
+function resetForm(){
+    window.location.reload();
+}
+
 </script>
 
 </body>
