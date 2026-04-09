@@ -627,12 +627,8 @@ section{
     .hero{
         flex-direction:column;
         text-align:center;
-        padding:180px 20px 60px 20px;
-        background-position:
-            left top,
-            center center;
-
-		justify-content:center;   /* 🔥 vertical center */
+        padding:120px 20px;
+		justify-content:center;  
     	align-items:center; 
     }
 
@@ -643,6 +639,16 @@ section{
     .hero-left p{
         max-width:100%;
     }
+
+	.hero-left{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+	}
+	
+	.hero-right{
+    display:none;
+	}
 
     /* SECTIONS */
     section{
