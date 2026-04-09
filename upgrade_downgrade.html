@@ -257,7 +257,13 @@ body.fade-out{
 
         <div class="chat-group">
             <label>Current Plan</label>
-            <input type="text" name="current_plan" placeholder="Enter your current plan" required>
+            <select name="action" required>
+                <option value="">Choose plan</option>
+                <option>100 Mbps - ₱1,000</option>
+                <option>150 Mbps - ₱1,300</option>
+                <option>200 Mbps - ₱1,500</option>
+                <option>300 Mbps - ₱2,000</option>
+            </select>
         </div>
 
         <div class="chat-group">
@@ -271,7 +277,13 @@ body.fade-out{
 
         <div class="chat-group">
             <label>Desired Plan</label>
-            <input type="text" name="desired_plan" placeholder="Enter desired plan (Plan 1000)" required>
+            <select name="action" required>
+                <option value="">Choose plan</option>
+                <option>100 Mbps - ₱1,000</option>
+                <option>150 Mbps - ₱1,300</option>
+                <option>200 Mbps - ₱1,500</option>
+                <option>300 Mbps - ₱2,000</option>
+            </select>
         </div>
 
         <input type="hidden" name="form_type" value="plan_change">
