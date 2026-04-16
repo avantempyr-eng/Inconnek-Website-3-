@@ -962,12 +962,14 @@ html, body{
 
         <!-- RIGHT SIDE -->
         <div class="contact-form-wrapper">
-            <form action="https://formspree.io/f/mnjozeyp" method="POST" class="contact-form">
-                <input name="name" type="text" placeholder="Full Name" required>
-                <input name="email" type="email" placeholder="Email Address" required>
-				<input type="hidden" name="_subject" value="New Contact Form Message">
-                <textarea name="message" rows="5" placeholder="Your Message"></textarea>
-                <button type="submit" class="btn">Send Message</button>
+            <form id="contact_form" onsubmit="return false;" class="contact-form">
+                <input name="full_name" type="text" placeholder="Full Name" required>
+				<input name="email" type="email" placeholder="Email Address" required>
+				<textarea name="message" rows="5" placeholder="Your Message"></textarea>
+				<input type="hidden" name="form_type" value="contact">
+                <button type="button" class="btn" onclick="submitContactForm()">
+    					Send Message
+				</button>
             </form>
         </div>
 
@@ -1012,6 +1014,29 @@ document.querySelectorAll("a").forEach(link => {
         }, 400); // match CSS duration
     });
 });
+
+<script>
+function submitContactForm() {
+    const form = document.getElementById("contact_form");
+    const formData = new FormData(form);
+
+    // SHOW SUCCESS UI (same style as installation)
+    document.querySelector(".contact-form-wrapper").innerHTML = `
+        <div style="text-align:center;">
+            <h2>✅ Message Sent!</h2>
+            <p>We’ll contact you shortly.</p>
+            <button onclick="location.reload()" class="btn">
+                🔁 Send Another Message
+            </button>
+        </div>
+    `;
+
+fetch("https://script.google.com/macros/s/AKfycbzUg3_19iuB0cpI-WQ9IP8Py1-ayP7gDezV4VVm3yE3i4aALow5acYUy9LusmVIGqinlw/exec", {
+    method: "POST",
+    body: formData,
+    mode: "no-cors"
+    });
+}
 </script>
 
 </body>
